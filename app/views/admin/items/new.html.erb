@@ -1,2 +1,16 @@
 <h1>Admin::Items#new</h1>
 <p>Find me in app/views/admin/items/new.html.erb</p>
+
+<%= form_with model: [:admin, @item] do |f| %>
+
+<%= f.file_field :image, accept: "image/*" %>
+<%= f.text_field :name %>
+<%= f.text_area :introduction %>
+<%= f.select :name, options_from_collection_for_select(Genre.all, :id, :name) %>
+<%= f.text_field :price %>
+<%= f.radio_button :is_active, true %>
+<%= f.label :is_active, "販売中" %>
+<%= f.radio_button :is_active, false %>
+<%= f.label :is_active, "販売停止中" %>
+<%= f.submit '商品投稿' %>
+<% end %>
